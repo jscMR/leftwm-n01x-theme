@@ -34,7 +34,7 @@ leftwm-state -q -n -t $SCRIPTPATH/sizes.liquid | sed -r '/^\s*$/d' | while read 
 do 
   barname="mainbar$index"
   echo $barname
-  monitor=$monitor offsetx=$x width=$width polybar -c $SCRIPTPATH/polybar.ini $barname &> /dev/null &
+  monitor=$monitor offsetx=$x width=$width polybar -c $SCRIPTPATH/polybar/config.ini $barname &> /dev/null &
   let index=index+1
 done
 
