@@ -10,12 +10,8 @@ fi
 ln -s $SCRIPTPATH/down /tmp/leftwm-theme-down
 
 
-#boot compton or picom if it exists
-if [ -x "$(command -v compton)" ]; then
-  compton --config $SCRIPTPATH/compton.conf &> /dev/null & 
-elif [ -x "$(command -v picom)" ]; then
-  picom &> /dev/null & 
-fi
+#boot picom 
+picom --config $SCRIPTPATH/picom.conf &> /dev/null &
 
 #set the theme.toml config
 echo "LoadTheme $SCRIPTPATH/theme.toml" > $XDG_RUNTIME_DIR/leftwm/command-0.pipe
@@ -23,10 +19,10 @@ echo "LoadTheme $SCRIPTPATH/theme.toml" > $XDG_RUNTIME_DIR/leftwm/command-0.pipe
 
 #set background
 if [ -x "$(command -v feh)" ]; then
-  feh --bg-scale $SCRIPTPATH/background.png
+  feh --bg-scale $SCRIPTPATH/background.jpg
 fi
 
-polybar -v
+polybar -v 
 
 index=0
 monitor="$(polybar -m | grep +0+0 | sed s/:.*// | tac)"
@@ -34,7 +30,7 @@ leftwm-state -q -n -t $SCRIPTPATH/sizes.liquid | sed -r '/^\s*$/d' | while read 
 do 
   barname="mainbar$index"
   echo $barname
-  monitor=$monitor offsetx=$x width=$width polybar -c $SCRIPTPATH/polybar/config.ini $barname &> /dev/null &
+  monitor=$monitor offsetx=$x width=$width polybar -c $SCRIPTPATH/polybar/polybar.config $barname &> /dev/null &
   let index=index+1
 done
 
