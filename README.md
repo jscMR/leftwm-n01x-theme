@@ -40,3 +40,4 @@ $MOD + Shift + r
 ## Credits
 
 This work is based of the excelent i3 theme collection from [Stavros Grigoriou (unix121)](https://github.com/unix121)
+# leftwm-n01x-theme
